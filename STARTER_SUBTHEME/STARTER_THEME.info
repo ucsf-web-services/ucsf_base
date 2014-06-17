@@ -1,0 +1,35 @@
+name        = UCSF STARTER_THEME
+description = Sub theme extended off of the ucsf_base theme. SASS/COMPASS based. 
+screenshot  = screenshot.png
+core        = 7.x
+
+base theme  = ucsf_base
+
+; CSS - General
+stylesheets[all][] = css/STATER_THEME.css
+
+; Javascript
+; scripts[] = js/STATER_THEME.js
+
+;-------------- R E G I O N S -------------
+;regions_hidden[] = im_a_hidden_but_visible_for_a_module
+
+;-- Required Regions
+regions[page_top]    = Page Top
+regions[content_top] = Content Top 
+regions[content]     = Content
+regions[page_bottom] = Page Bottom
+
+;-- Core Regions
+regions[top_header]     = Top Header
+regions[header]         = Header
+regions[footer_top]     = Footer Top
+regions[footer]         = Footer
+regions[sidebar_first]  = Sidebar First
+regions[sidebar_second] = Sidebar Second
+regions[help]           = Help
+regions[highlighted]    = Highlighted
+
+; Plugins
+;plugins[panels][layouts] = plugins/layouts
+;plugins[panels][styles] = plugins/styles
