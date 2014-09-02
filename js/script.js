@@ -215,33 +215,34 @@
                 }, 1);
             }
 
-            function update_resizables() {
+            var update_resizables = function() {
                 // $('#log').html( 'width: ' + $(window).width() + ' / height: ' + $(window).height() );
 
 
-                // Swawp position of elements when two sidebars
+                // swap position of elements when two sidebars
                 if ($('.two-sidebars').length > 0 && $(window).width() < 630) {
                     if ($('.sidebar-first + .sidebar-second').length > 0) {
                         $('.sidebar-first').insertAfter('.sidebar-second');
                     }
                 } else {
-
                     if ($('.sidebar-second + .sidebar-first').length > 0) {
                         $('.sidebar-second').insertAfter('.sidebar-first');
                     }
                 }
+            };
+
+            var enable_sidebar_switch = true;
+            if (settings.ucsf_base && settings.ucsf_base.disable_sidebar_switch) {
+                enable_sidebar_switch = false;
             }
-
-            $(window).resize(function () {
+            if (enable_sidebar_switch) {
+                $(window).resize(function () {
+                    update_resizables();
+                });
                 update_resizables();
-            });
-
-            update_resizables();
-
+            }
         }
     };
-
-
 })(jQuery);
 
 
