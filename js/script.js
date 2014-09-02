@@ -1,26 +1,26 @@
 (function ($) {
-	// Handle user toolbar when user is admin and have admin toolbar enabled.
-	Drupal.behaviors.ucsf = {
-		attach: function(context, settings) {
+    // Handle user toolbar when user is admin and have admin toolbar enabled.
+    Drupal.behaviors.ucsf = {
+        attach: function(context, settings) {
 
-			if($('.field-type-text-with-summary, .field-type-text, .block').length > 0 && $('body > div.print-site_name').length === 0){
+            if($('.field-type-text-with-summary, .field-type-text, .block').length > 0 && $('body > div.print-site_name').length === 0){
         /*****************
         // Vertical Tabs
         ******************/
         // First Step
         // We grab the code outputted by the WYSIWYG, and try to make it CSS friendly
-				$vtabs = [];
-				$vcontent = [];
+                $vtabs = [];
+                $vcontent = [];
         $vtab = 0;
         $vindex = 0;
-				$('a.vtab').each(function($index){
-					$this = $(this);
-					$vtabs[$vindex] = $this.text();
-					$vcontent[$vindex] = $this.parent('p').next('p, div').html();
+                $('a.vtab').each(function($index){
+                    $this = $(this);
+                    $vtabs[$vindex] = $this.text();
+                    $vcontent[$vindex] = $this.parent('p').next('p, div').html();
           $vindex++;
 
           // If this is the last "tab" item then we display the whole thing
-					if($this.parent('p').next('p, div').next('p').find('a.vtab').length === 0){
+                    if($this.parent('p').next('p, div').next('p').find('a.vtab').length === 0){
             $vtabsHtml = '<ul class="vnav">';
             $.each($vtabs, function($itab){
               $vtabsHtml += '<li class="vnav-tab-'+$itab+'">'+$vtabs[$itab]+'</li>';
@@ -30,16 +30,16 @@
             $.each($vcontent, function($icontent){
               $vcontentHtml += '<div class="vcontent">'+$vcontent[$icontent]+'</div>';
             });
-						$this.parent('p').next('p, div').after('<div class="vtabs vtabs-'+$vtab+'">'+$vtabsHtml+$vcontentHtml+'</div>');
+                        $this.parent('p').next('p, div').after('<div class="vtabs vtabs-'+$vtab+'">'+$vtabsHtml+$vcontentHtml+'</div>');
             $vtabs.length = 0;
             $vcontent.length = 0;
             $vindex = 0;
             $vtab++;
-					}
+                    }
           // Let's remove the tab content
-					$this.parent('p').next('p, div').remove();
-					$this.parent('p').remove();
-				});
+                    $this.parent('p').next('p, div').remove();
+                    $this.parent('p').remove();
+                });
 
         // Second Step
         // Bind the click to do the proper show/hide behavior
@@ -125,7 +125,7 @@
             lineHeight: '20px'
           }
         });
-			}
+            }
 
       /******************
       // Sortable Arrays
@@ -163,18 +163,18 @@
       // $('#mobile-link').addClass('active');
       // $('.header-region').addClass('active');
 
-			$('#mobile-link').click(function(event) {
-				event.preventDefault();
-				var nav = $('.header-region');
+            $('#mobile-link').click(function(event) {
+                event.preventDefault();
+                var nav = $('.header-region');
 
-				if (nav.hasClass('active')) {
-					nav.removeClass('active');
-					$(this).removeClass('active');
-				} else {
-					nav.addClass('active');
-					$(this).addClass('active');
-				}
-			});
+                if (nav.hasClass('active')) {
+                    nav.removeClass('active');
+                    $(this).removeClass('active');
+                } else {
+                    nav.addClass('active');
+                    $(this).addClass('active');
+                }
+            });
 
       /* Work around for the links with there odd padding sqishyness to make entire
         area clickable */
@@ -187,20 +187,20 @@
         });
       }
 
-			// Adds overlay for repsonsive needs
-			// Delete or disable for production
-			// $('<div>').attr({'id': 'log'}).css({
-			// 	'color': '#333',
-			// 	'background': 'rgba(255,255,255, .8)',
-			// 	'position': 'fixed',
-			// 	'padding': '.5em 0',
-			// 	'bottom': 0,
-			// 	'left': 0,
-			// 	'width': '100%',
-			// 	'text-align':'center'
-			// }).html('width: ' + $(window).width() + ' / height: ' + $(window).height() ).appendTo('body');
-      
-      /* Time sensitive generic fix for a visual thing with sticky heads 
+            // Adds overlay for repsonsive needs
+            // Delete or disable for production
+            // $('<div>').attr({'id': 'log'}).css({
+            //     'color': '#333',
+            //     'background': 'rgba(255,255,255, .8)',
+            //     'position': 'fixed',
+            //     'padding': '.5em 0',
+            //     'bottom': 0,
+            //     'left': 0,
+            //     'width': '100%',
+            //     'text-align':'center'
+            // }).html('width: ' + $(window).width() + ' / height: ' + $(window).height() ).appendTo('body');
+
+      /* Time sensitive generic fix for a visual thing with sticky heads
          I know this is ugly, but it works for now. */
       var sticky_th = $('table.sticky-enabled thead tr th');
       if (sticky_th.length > 0) {
@@ -208,22 +208,22 @@
         setTimeout(function() { $('table tr th').css('float', 'none'); }, 1);
       }
 
-			function update_resizables() {
-				// $('#log').html( 'width: ' + $(window).width() + ' / height: ' + $(window).height() );
+            function update_resizables() {
+                // $('#log').html( 'width: ' + $(window).width() + ' / height: ' + $(window).height() );
 
 
-				// Swawp position of elements when two sidebars
-				if( $('.two-sidebars').length > 0 && $(window).width() < 630 ) {
-					if ( $('.sidebar-first + .sidebar-second').length > 0 ) {
-						$('.sidebar-first').insertAfter('.sidebar-second');
-					}
-				} else {
+                // Swawp position of elements when two sidebars
+                if( $('.two-sidebars').length > 0 && $(window).width() < 630 ) {
+                    if ( $('.sidebar-first + .sidebar-second').length > 0 ) {
+                        $('.sidebar-first').insertAfter('.sidebar-second');
+                    }
+                } else {
 
-					if ( $('.sidebar-second + .sidebar-first').length > 0 ) {
-						$('.sidebar-second').insertAfter('.sidebar-first');
-					}
-				}
-			}
+                    if ( $('.sidebar-second + .sidebar-first').length > 0 ) {
+                        $('.sidebar-second').insertAfter('.sidebar-first');
+                    }
+                }
+            }
 
       $(window).resize(function() {
         update_resizables();
@@ -231,8 +231,8 @@
 
       update_resizables();
 
-		}
-	};
+        }
+    };
 
 
 })(jQuery);
