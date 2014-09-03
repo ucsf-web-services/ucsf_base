@@ -485,6 +485,10 @@ Span 8 - 12:    100%
             width: $sidebar_first;
             margin-left: -($sidebar_first + $main_content);
         }
+        
+        .sidebar-second {
+            clear: both;
+        }
     }
 
     // One sidebar only 
