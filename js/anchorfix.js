@@ -9,13 +9,13 @@ jQuery(document).ready(function () {
     } else {
       isScrollFix = false;
     }
-  })
+  });
 
   function elmOffset(obj) {
     var offset = 0;
     if (obj.offsetParent) {
       do {
-        offset += obj.offsetTop
+        offset += obj.offsetTop;
       } while ((obj = obj.offsetParent) != null);
     }
     return offset;
