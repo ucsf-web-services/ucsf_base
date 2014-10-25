@@ -1,26 +1,20 @@
-jQuery(document).ready(function () {
-  var isScrollFix = false;
-  var el = document.getElementById('hold');
-  if (el) {
-    el.addEventListener('scroll', function (e) {
-      if (!isScrollFix) {//don't copy our own scroll event onto document
-        isScrollFix = true;
-        var scrollTo = this.scrollTop;
-        this.scrollTop = 0;
-        window.scroll(0, scrollTo);
-      } else {
-        isScrollFix = false;
+(function ($) {
+  Drupal.behaviors.anchorFix = {
+    attach: function (context, settings) {
+      var isScrollFix = false;
+      var el = document.getElementById('hold');
+      if (el) {
+        $(el).scroll(function() {
+          if (!isScrollFix) {//don't copy our own scroll event onto document
+            isScrollFix = true;
+            var scrollTo = this.scrollTop;
+            this.scrollTop = 0;
+            window.scroll(0, scrollTo);
+          } else {
+            isScrollFix = false;
+          }
+        });
       }
-    });
-  }
-
-  function elmOffset(obj) {
-    var offset = 0;
-    if (obj.offsetParent) {
-      do {
-        offset += obj.offsetTop;
-      } while ((obj = obj.offsetParent) != null);
     }
-    return offset;
-  }
-});
+  };
+})(jQuery);
